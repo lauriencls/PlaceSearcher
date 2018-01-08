@@ -2,40 +2,39 @@ package org.miage.placesearcher;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.RatingBar;
-import android.widget.TextView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.ratingBar) RatingBar ratingBar;
-    @BindView(R.id.textView) TextView textView;
-
-    /** Commentaire de test commit */
-    /** Deuxième commentaire de test commit */
+    @BindView(R.id.mListView) ListView mListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
+        setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ratingBar.setRating(ratingBar.getRating() - 1);
-            }
-        });
+
+        List<String> listItems = new ArrayList<String>();
+        for(int i=1;i<50;i++)
+        {
+            listItems.add("Item"+i);
+        }
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems);
+        mListView.setAdapter(adapter);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        this.ratingBar.setRating(this.ratingBar.getRating() + 1);
     }
 
 
