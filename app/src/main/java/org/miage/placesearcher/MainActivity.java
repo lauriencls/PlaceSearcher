@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.ratingBar) RatingBar ratingBar;
     @BindView(R.id.textView) TextView textView;
 
+    /** Commentaire de test commit */
+    /** Deuxième commentaire de test commit */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
