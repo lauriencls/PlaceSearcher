@@ -23,12 +23,12 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
 
-        List<String> listItems = new ArrayList<String>();
+        List<Place> listItems = new ArrayList<Place>();
         for(int i=1;i<50;i++)
         {
-            listItems.add("Item"+i);
+            listItems.add(new Place("Street"+i, "NANTES", "44000"));
         }
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems);
+        ArrayAdapter adapter = new PlaceAdapter(this, listItems);
         mListView.setAdapter(adapter);
     }
 
