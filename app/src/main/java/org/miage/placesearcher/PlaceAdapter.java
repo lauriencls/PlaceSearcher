@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -27,6 +28,9 @@ public class PlaceAdapter extends ArrayAdapter<Place> {
     @BindView(R.id.textViewZipCode)
     TextView textViewZipCode;
 
+    @BindView(R.id.imageView)
+    ImageView imageView;
+
 
     public PlaceAdapter(Context context, List<Place> listePlaces)
     {
@@ -45,6 +49,12 @@ public class PlaceAdapter extends ArrayAdapter<Place> {
         textViewCity.setText(getItem(i).getCity());
         textViewZipCode.setText(getItem(i).getZipCode());
         textViewStreet.setText(getItem(i).getStreet());
+
+        /** Si la rue contient "1", on change d'icône */
+        if(textViewStreet.getText().toString().contains("1"))
+        {
+            imageView.setImageResource(R.drawable.street);
+        }
 
         return actualView;
     }
