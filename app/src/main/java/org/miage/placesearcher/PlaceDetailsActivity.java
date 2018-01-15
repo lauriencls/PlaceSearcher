@@ -5,7 +5,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -28,7 +27,7 @@ public class PlaceDetailsActivity extends AppCompatActivity {
     Toolbar toolbar;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.place_details_layout);
@@ -60,13 +59,27 @@ public class PlaceDetailsActivity extends AppCompatActivity {
         {
             public void onClick(View v)
             {
-                Log.e("LOG", "Avant le Google");
-
                 /** Lancement recherche de la rue dans Google */
                 Uri url = Uri.parse("http://www.google.fr/search?q="+mDetailStreet.getText());
                 Intent launchBrowser = new Intent(Intent.ACTION_VIEW, url);
                 startActivity(launchBrowser);
             }
+        });
+
+
+        /** Action quand on clique sur "Partager" */
+        mButtonShare.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                /** Lancement des options de partage */
+                Intent shareIntent = new Intent();
+                shareIntent.setAction(Intent.ACTION_SEND);
+                shareIntent.putExtra(Intent.EXTRA_TEXT, "Adresse : "+mDetailStreet.getText());
+                shareIntent.setType("text/plain");
+                startActivity(shareIntent);
+            }
+
         });
 
     }
