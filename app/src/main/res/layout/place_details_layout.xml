@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -12,14 +12,11 @@
 
 
     <TextView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/detail_street"
-        app:layout_anchorGravity="center_vertical|center_horizontal"
-        android:layout_gravity="center_vertical|center_horizontal" />
+        android:layout_marginTop="60dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        tools:text="Détails" />
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -34,11 +31,41 @@
 
     </android.support.design.widget.AppBarLayout>
 
+
+    <Button
+        android:text="Chercher sur Google"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="153dp"
+        android:id="@+id/button_google_search"
+        android:layout_row="1"
+        android:layout_column="1"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
     <TextView
+        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        tools:text="Détails" />
+        android:id="@+id/detail_street"
+        app:layout_anchorGravity="center_vertical|center_horizontal"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_above="@+id/button_google_search"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp" />
 
-</android.support.design.widget.CoordinatorLayout>
+    <Button
+        android:text="Partager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_share"
+        android:layout_row="1"
+        android:layout_column="1"
+        android:layout_alignTop="@+id/button_google_search"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="54dp" />
+
+
+</RelativeLayout>
