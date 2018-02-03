@@ -10,6 +10,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.squareup.otto.Subscribe;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,12 +63,36 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(seePlaceDetailsIntent);
             }
         });
+    }
+
+    @Subscribe
+    public void searchResult(final SearchResultEvent event)
+    {
+        runOnUiThread(new Runnable() {
+
+            @Override
+            public void run() {
+                /** Mise à jour de la liste des place */
+                ArrayAdapter adapter = new PlaceAdapter(MainActivity.this, event.getPlaces());
+                mListView.setAdapter(adapter);
+            }
+        });
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        EventBusManager.BUS.register(this);
+        PlaceSearchService.INSTANCE.searchPlacesFromAddress("Place du commerce");
+
+
+    }
+
+    @Override
+    protected void onPause(){
+        EventBusManager.BUS.unregister(this);
+        super.onPause();
     }
 
 
